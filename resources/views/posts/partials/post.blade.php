@@ -14,6 +14,10 @@
         text-decoration: none;
         text-transform: capitalize;
     }
+
+    .allpost > * {
+        margin: 1rem;
+    }
 </style>
 
 <div class="allpost">
