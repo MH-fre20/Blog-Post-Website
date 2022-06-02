@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class notHomeController extends Controller
 {
     public function home() {
-        return view('home.index');
+        return view('nothome.index');
     }
 
     public function contact() 
     {
-        return view('home.contact');
+        return view('nothome.contact');
 
     }
 }
