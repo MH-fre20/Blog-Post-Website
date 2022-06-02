@@ -4,9 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AuthorFactory extends Factory
+class BlogpostFactory extends Factory
 {
-    protected $model = Author::class;
     /**
      * Define the model's default state.
      *
@@ -15,7 +14,8 @@ class AuthorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->paragraph(),
+            'content' => $this->faker->paragraph()
         ];
     }
 }

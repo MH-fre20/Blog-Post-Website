@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\BlogPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
 {
-    protected $model = Comment::class;
     /**
      * Define the model's default state.
      *
@@ -15,7 +15,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'content' => $this->faker->content()
+            'blog_post_id' => BlogPost::factory(),
+            'content' => $this->faker->paragraph()
         ];
     }
 }
