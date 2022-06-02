@@ -30,3 +30,18 @@
     /* gap: 1rem; */
     /* justify-content: space-evenly; */
 }
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: lightblue;
+    margin-block: 1.8rem;
+    border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(24, 128, 208);
+    border-radius: 2rem;
+}

@@ -24,9 +24,8 @@
     }
 
     .allpost:hover {
-        box-shadow:14px -14px 1px 1px rgb(208, 168, 168);
+        box-shadow:14px -14px 1px 1px lightblue;
         transform: translate(-.6rem, .6rem);
-        
     }
 </style>
 

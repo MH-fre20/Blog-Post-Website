@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link href="{{ asset('rcs/app.css') }}" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <title> Laravel App - @yield('title')</title>
 </head>
 <style>
     #header {
-        box-shadow:2px 2px 2px lightblue;
+        box-shadow: 2px 2px 2px lightblue;
     }
+
 </style>
+
 <body>
     <div id="header" class="d-flex justify-content-around align-items-center p-3 px-md-4 bg-white">
         <h5 class="my-0 mr-md-auto font-weight-normal">laravel App</h5>
@@ -33,4 +37,5 @@
         @yield('content')
     </div>
 </body>
+
 </html>

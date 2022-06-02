@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index', ['posts' => BlogPost::all()]);
+        return view('posts.index', ['posts' => BlogPost::orderBy('created_at', 'desc')->get()]);
     }
 
     /**
@@ -120,9 +120,5 @@ class PostController extends Controller
         session()->flash('status', 'blog post was deleted');
 
         return redirect()->route('posts.index');
-    }
-
-    public function testsee1blogpostwithcomments() {
-        
     }
 }
