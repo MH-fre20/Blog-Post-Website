@@ -7,7 +7,11 @@
 
     .allpost {
         margin: 2rem;
-        box-shadow:0px 1px 1px gray;
+        border: 1px solid rgb(115, 203, 232);
+        border-radius: .3rem;
+        transform: translate(0rem, 0rem);
+        box-shadow: 0px 0px 0px 0px white;
+        transition: transform .3s, box-shadow .3s;
     }
 
     a {
@@ -17,6 +21,12 @@
 
     .allpost > * {
         margin: 1rem;
+    }
+
+    .allpost:hover {
+        box-shadow:14px -14px 1px 1px rgb(208, 168, 168);
+        transform: translate(-.6rem, .6rem);
+        
     }
 </style>
 
