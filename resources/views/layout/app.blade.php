@@ -16,6 +16,14 @@
         box-shadow: 2px 2px 2px lightblue;
     }
 
+    #mynav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        position: relative;
+        left: .8rem;
+    }
+
 </style>
 
 <body>
@@ -29,7 +37,7 @@
 
             @guest
             @if (Route::has('register'))
-            <a class="p-2 text-dark" href="{{ route('register') }}">Register</a>
+                <a class="p-2 text-dark" href="{{ route('register') }}">Register</a>
             @endif
             <a class="p-2 text-dark" href="{{ route('login') }}">Login</a>
         @else
@@ -40,7 +48,7 @@
         @csrf</form>
         @endguest
         </nav>
-        
+
     </div>
     <div class="container">
         @if (session('status'))
