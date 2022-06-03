@@ -54,19 +54,10 @@ Route::view('/posts/index', 'posts.index'); */
 Route::resource('posts', PostController::class);
 
 Route::get('/', [notHomeController::class, 'home'])->name('nothome.index');
+
 Route::get('/contact', [notHomeController::class, 'contact'])->name('nothome.contact');
 
 Route::get('/single', AboutController::class);
-
-/* Route::get('/contact/{id}', function ($id) {
-    return 'contact '. $id;
-})->name('home.contact');
-
-Route::get('/recent/{id?}', function($id = 4) {
-    return 'how many posts ' . $id;
-})->name('home.recent');
- */
-
 
 Auth::routes();
 
