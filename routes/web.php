@@ -53,7 +53,7 @@ Route::get('/posts/{id}', function ($id) {
 Route::view('/posts/index', 'posts.index'); */
 Route::resource('posts', PostController::class);
 
-Route::get('/', [notHomeController::class, 'home'])->name('nothome.index');
+Route::get('/', [notHomeController::class, 'home'])->name('nothome.index')->middleware('auth');
 
 Route::get('/contact', [notHomeController::class, 'contact'])->name('nothome.contact');
 
