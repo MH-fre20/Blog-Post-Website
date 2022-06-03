@@ -25,8 +25,22 @@
             <a class="p-2 text-dark" href="{{ route('nothome.index') }}">Home</a>
             <a class="p-2 text-dark" href="{{ route('nothome.contact') }}">Contact</a>
             <a class="p-2 text-dark" href="{{ route('posts.index') }}">Blog Posts</a>
-            <a class="p-2 text-dark" href="{{ route('posts.create') }}">Add Blog Post</a>
+            <a class="p-2 text-dark" href="{{ route('posts.create') }}">Add</a>
+
+            @guest
+            @if (Route::has('register'))
+            <a class="p-2 text-dark" href="{{ route('register') }}">Register</a>
+            @endif
+            <a class="p-2 text-dark" href="{{ route('login') }}">Login</a>
+        @else
+        <a class="p-2 text-dark" href="{{ route('logout') }}"
+        onclick="event.preventDefault();document.querySelector('#logout-form').submit();"
+        >Logout</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+        @csrf</form>
+        @endguest
         </nav>
+        
     </div>
     <div class="container">
         @if (session('status'))
