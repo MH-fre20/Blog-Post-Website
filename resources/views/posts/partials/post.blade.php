@@ -26,13 +26,18 @@
     .allpost:hover {
         box-shadow:14px -14px 1px 1px lightblue;
         transform: translate(-.6rem, .6rem);
+        color: lightsalmon;
+    }
+
+    .allpost:hover #title {
+        color: burlywood;
     }
 </style>
 
 <div class="allpost">
     <h3>
         <li>{{ $loop->iteration }}</li>
-        <a href="{{ route('posts.show', ['post' => $post->id]) }}">
+        <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="title">
             {{ $post->title }}
         </a>
     </h3>

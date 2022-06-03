@@ -16,7 +16,6 @@ class CreateBlogPostsTable extends Migration
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            
             $table->string('title');
             $table->text('content');
         });
@@ -29,6 +28,6 @@ class CreateBlogPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_posts');
+            Schema::dropIfExists('blog_posts');
     }
 }
