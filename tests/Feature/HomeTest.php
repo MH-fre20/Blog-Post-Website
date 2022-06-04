@@ -6,24 +6,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class HomeTest extends TestCase
+class Hometest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function testHomePage()
+    public function test_example()
     {
         $response = $this->get('/');
 
-        $response->assertSeeText("This is home.index");
+        $response->assertSeeText('This is home.index');
     }
 
-    public function testContactPage()
+    public function contactTest()
     {
         $response = $this->get('/contact');
-
-        $response->assertSeeText("This is home.contact");
+        $response->assertSeeText('This is home.contact');
     }
 }

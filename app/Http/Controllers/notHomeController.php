@@ -13,6 +13,5 @@ class notHomeController extends Controller
     public function contact() 
     {
         return view('nothome.contact');
-
     }
 }
