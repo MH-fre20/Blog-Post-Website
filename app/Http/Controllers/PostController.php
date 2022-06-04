@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePost;
 use App\Models\BlogPost;
+use App\Models\User;
+use Illuminate\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +36,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index', ['posts' => BlogPost::orderBy('created_at', 'desc')->get()]);
+        $user= auth()->user()->id;
+        
+        //dd(BlogPost::where('user_id', '=', $user));
+        return view('posts.index', ['posts' => BlogPost::where('user_id', '=', $user)->orderBy('created_at', 'desc')->get()]);
+
     }
 
     /**
@@ -56,12 +62,14 @@ class PostController extends Controller
     public function store(StorePost $request)
     {
         $validated = $request->validated();
-        /* $post = new BlogPost();
+        $post = new BlogPost();
         $post->title = $validated['title'];
         $post->content = $validated['content'];
-        $post->save(); */
         
-        $post = BlogPost::create($validated);
+        $post->user_id = auth()->user()->id;
+        $post->save(); 
+        
+        /*$post = BlogPost::create($validated);*/
 
 
         $request->session()->flash('status', 'blog was 
