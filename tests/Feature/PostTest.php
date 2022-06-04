@@ -47,4 +47,5 @@ class PostTest extends TestCase
         //Assert
         $response->assertSeeText('New title');
     }
+
 }
