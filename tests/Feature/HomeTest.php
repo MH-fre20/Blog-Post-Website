@@ -8,6 +8,10 @@ use Tests\TestCase;
 
 class Hometest extends TestCase
 {
+    use RefreshDatabase;
+    
+
+
     /**
      * A basic feature test example.
      *
@@ -24,5 +28,11 @@ class Hometest extends TestCase
     {
         $response = $this->get('/contact');
         $response->assertSeeText('This is home.contact');
+    }
+
+    public function singleTest()
+    {
+        $response = $this->get('/single');
+        $response->assertSeeText('single');
     }
 }
