@@ -76,10 +76,7 @@ class PostTest extends TestCase
         $post->content = 'content';
         $post->save();
 
-
-        $object = $this->get('/posts');
-        $object->assertSeeText('hellow');
-
+        $this->get('/posts')->assertSeeText('hellow');
 
         $this->assertDatabaseHas('blog_posts', [
             'title' => 'hellow'
