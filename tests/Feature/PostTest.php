@@ -33,6 +33,8 @@ class PostTest extends TestCase
         $this->assertInstanceOf(User::class, $post->user);
         //$this->assertInstanceOf(HasMany::class, $post);
         //method 2
+
+        //to see if we have BlogPost function in user class
         $this->assertEquals(1, $user->BlogPost->count());
 
         $hello = 'hello';
