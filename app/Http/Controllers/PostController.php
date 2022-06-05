@@ -13,8 +13,10 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 
-    'store', 'edit', 'update', 'destroy']);
+        $this->middleware('auth')->only([
+            'create',
+            'store', 'edit', 'update', 'destroy'
+        ]);
     }
 
     /*  private $posts = [
@@ -36,11 +38,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $user= auth()->user()->id;
-        
-        //dd(BlogPost::where('user_id', '=', $user));
-        return view('posts.index', ['posts' => BlogPost::where('user_id', '=', $user)->orderBy('created_at', 'desc')->get()]);
-
+        if (isset(auth()->user()->id)) {
+            $user = auth()->user()->id;
+            //dd(BlogPost::where('user_id', '=', $user));
+            return view('posts.index', ['posts' => BlogPost::where('user_id', '=', $user)->orderBy('created_at', 'desc')->get()]);
+        } else {
+            return view('posts.index', ['posts' => BlogPost::all()]);
+        }
     }
 
     /**
@@ -65,10 +69,10 @@ class PostController extends Controller
         $post = new BlogPost();
         $post->title = $validated['title'];
         $post->content = $validated['content'];
-        
+
         $post->user_id = auth()->user()->id;
-        $post->save(); 
-        
+        $post->save();
+
         /*$post = BlogPost::create($validated);*/
 
 
@@ -117,7 +121,7 @@ class PostController extends Controller
         $post->save();
 
         $request->session()->flash('status', "Blog post was updated");
-        return redirect()->route('posts.show', ['post'=>$post->id]);
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
     /**
