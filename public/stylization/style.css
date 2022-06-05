@@ -81,6 +81,7 @@ body {
 } 
 
 .overlay {
+    z-index: 2;
     position: absolute;
     top: 0;
     visibility: hidden;
