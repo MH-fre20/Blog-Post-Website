@@ -64,7 +64,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 3rem;
     padding-top: 6rem;
     align-items: center;
     gap: 1rem;
@@ -75,8 +74,8 @@ body {
 
 .slideshow i {
     position: absolute;
-    top: 2.3rem;
-    right: 4rem;
+    top: 2rem;
+    right: 2rem;
     width: 3rem;
     color:rgba(45, 45, 45, 0.914);
 } 
@@ -102,6 +101,14 @@ body {
 .slideshow a {
     text-decoration: none;
     color: white !important;
+}
+
+#close::before {
+    background-color: aliceblue;
+    width: 100%;
+    height: .3rem;
+    padding: .4rem;
+    border-radius: 5rem;
 }
 
 @media screen and (max-width: 840px) {
