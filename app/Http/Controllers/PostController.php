@@ -43,7 +43,7 @@ class PostController extends Controller
             //dd(BlogPost::where('user_id', '=', $user));
             return view('posts.index', ['posts' => BlogPost::where('user_id', '=', $user)->orderBy('created_at', 'desc')->get()]);
         } else {
-            return view('posts.index', ['posts' => BlogPost::all()]);
+            return view('posts.index', ['posts' => BlogPost::withCount('comments')]);
         }
     }
 

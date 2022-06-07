@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\models\User;
 
 class BlogpostFactory extends Factory
 {
@@ -14,6 +15,7 @@ class BlogpostFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => User::factory(),
             'title' => $this->faker->paragraph(),
             'content' => $this->faker->paragraph()
         ];

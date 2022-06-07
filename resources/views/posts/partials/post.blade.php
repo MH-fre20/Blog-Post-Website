@@ -30,16 +30,27 @@
     }
 
     .allpost:hover #title {
-        color: burlywood;
+        color: black;
+    }
+
+    .display:nth-child(n+1) {
+        display: block;
     }
 </style>
 
 <div class="allpost">
-    <h3>
+    <h3 class="display">
         <li>{{ $loop->iteration }}</li>
         <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="title">
             {{ $post->title }}
         </a>
+        @if ($post->comments_count) {
+            <p>{{ $post->comments_count }} comments</p>
+        }
+        @else 
+            <p>No comments yet!!!!</p>
+
+        @endif
     </h3>
     <div id="myform">
         <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-primary my-2">
