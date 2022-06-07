@@ -15,7 +15,6 @@ class BlogpostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
             'title' => $this->faker->paragraph(),
             'content' => $this->faker->paragraph()
         ];

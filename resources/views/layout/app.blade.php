@@ -83,7 +83,7 @@
             @endif
             @yield('content')
         </div>
-        <script src="{{ asset('/stylization/script.js') }}" async></script>
+        <script src="{{ asset('/stylization/script.js') }}"></script>
     </body>
 
     </html>

@@ -38,15 +38,16 @@
     }
 </style>
 
+@section('title', 'see all posts')
+
 <div class="allpost">
     <h3 class="display">
         <li>{{ $loop->iteration }}</li>
         <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="title">
             {{ $post->title }}
         </a>
-        @if ($post->comments_count) {
+        @if ($post->comments_count)
             <p>{{ $post->comments_count }} comments</p>
-        }
         @else 
             <p>No comments yet!!!!</p>
 

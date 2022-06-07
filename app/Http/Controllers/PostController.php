@@ -38,13 +38,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        if (isset(auth()->user()->id)) {
-            $user = auth()->user()->id;
-            //dd(BlogPost::where('user_id', '=', $user));
-            return view('posts.index', ['posts' => BlogPost::where('user_id', '=', $user)->orderBy('created_at', 'desc')->get()]);
-        } else {
-            return view('posts.index', ['posts' => BlogPost::withCount('comments')]);
-        }
+        $posts = BlogPost::withCount('comments')->get();
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -69,8 +64,6 @@ class PostController extends Controller
         $post = new BlogPost();
         $post->title = $validated['title'];
         $post->content = $validated['content'];
-
-        $post->user_id = auth()->user()->id;
         $post->save();
 
         /*$post = BlogPost::create($validated);*/
