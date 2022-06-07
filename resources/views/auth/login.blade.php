@@ -66,6 +66,11 @@
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
+
+                                    @if (Route::has('register'))
+                                            <a class="btn btn-link"
+                                                href="{{ route('register') }}">{{ __('Create New account') }}</a>
+                                    @endif
                                 </div>
                             </div>
                         </form>
