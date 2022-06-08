@@ -18,19 +18,7 @@ class PostController extends Controller
             'store', 'edit', 'update', 'destroy'
         ]);
     }
-
-    /*  private $posts = [
-        1 => [
-            'title' => 'Intro to laravel',
-            'content' => 'This is a short intro to laravel',
-            'is_new' => true,
-        ],
-        2 => [
-            'title' => 'Intro to PHP',
-            'content' => 'This is a short intro to php',
-            'is_new' => false,
-        ],
-    ]; */
+    
     /**
      * Display a listing of the resource.
      *

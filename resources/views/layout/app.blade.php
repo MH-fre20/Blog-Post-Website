@@ -72,7 +72,7 @@
                     ({{ Auth::user()->name }})</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
                     @csrf</form>
-                    @endguest
+            @endguest
             </div>
             <div class="overlay"></div>
         <div class="container">
