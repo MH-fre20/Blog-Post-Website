@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BlogPost extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -20,10 +21,10 @@ class BlogPost extends Model
         return $this->hasMany(Comment::class);
     }
 
-    /* public static function boot()
+    public static function boot()
     {
         //we used static to make the use of :: instead of writing
-        // $parent = new boot(); we used static which makes the 
+        // $parent = new boot(); we used static which makes the
         // sentance look like this prent::boot();
         parent::boot();
 
@@ -31,7 +32,13 @@ class BlogPost extends Model
         {
             $blogPost->comments()->delete();
         }
-    );
+        );
 
-    } */
+        static::restoring(function (BlogPost $blogPost) {
+            $blogPost->comments()->restore();
+        }
+    );
+    }
+
+
 }

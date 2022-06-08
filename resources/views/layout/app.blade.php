@@ -77,7 +77,7 @@
             <div class="overlay"></div>
         <div class="container">
             @if (session('status'))
-                <div class="alert alert-success" style="z-index: 1">
+                <div class="alert alert-success" style="z-index: 1; margin-top: 1rem;">
                     <li>{{ session('status') }}</li>
                 </div>
             @endif
