@@ -21,6 +21,11 @@ class BlogPost extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function boot()
     {
         //we used static to make the use of :: instead of writing
@@ -33,7 +38,7 @@ class BlogPost extends Model
             $blogPost->comments()->delete();
         }
         );
-
+        
         static::restoring(function (BlogPost $blogPost) {
             $blogPost->comments()->restore();
         }

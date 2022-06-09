@@ -46,11 +46,13 @@
         <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="title">
             {{ $post->title }}
         </a>
+
+        <p>Added at {{ $post->created_at->diffForHumans() }} By {{ $post->user->name }}</p>
+
         @if ($post->comments_count)
             <p>{{ $post->comments_count }} comments</p>
         @else 
             <p>No comments yet!!!!</p>
-
         @endif
     </h3>
     <div id="myform">

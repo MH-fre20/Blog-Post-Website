@@ -30,7 +30,7 @@ class Hometest extends TestCase
         $response->assertSeeText('This is home.contact');
     }
 
-    public function singleTest()
+    public function test_singleTest()
     {
         $response = $this->get('/single');
         $response->assertSeeText('single');
