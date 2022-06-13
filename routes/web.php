@@ -62,3 +62,7 @@ Route::get('/single', AboutController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/secret', [notHomeController::class, 'secret'])
+->name('secret')
+->middleware('can:hello_mohamad');

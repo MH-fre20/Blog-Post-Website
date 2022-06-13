@@ -14,4 +14,9 @@ class notHomeController extends Controller
     {
         return view('nothome.contact');
     }
+
+    public function secret() 
+    {
+        return view('secret');
+    }
 }

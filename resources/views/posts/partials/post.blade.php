@@ -56,13 +56,18 @@
         @endif
     </h3>
     <div id="myform">
+        @can('update', $post)
         <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-primary my-2">
             Edit
         </a>
+        @endcan
+
+        @can('delete', $post)
         <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST">
             @csrf
             @method('DELETE')
             <input type="submit" value="Delete" class="btn btn-primary">
         </form>
+        @endcan
     </div>
 </div>

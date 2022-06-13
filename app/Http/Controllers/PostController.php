@@ -8,6 +8,11 @@ use App\Models\User;
 use Illuminate\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+
+//  controller => Policy
+// 'show' => view,
+//  destroy => delete
 
 class PostController extends Controller
 {
@@ -37,6 +42,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        //$this->authorize('posts.create');
         return view('posts.create');
     }
 
@@ -98,6 +104,15 @@ class PostController extends Controller
     public function update(StorePost $request, $id)
     {
         $post = BlogPost::findOrFail($id);
+        $this->authorize('posts.update', $post);
+        
+        //Another way of doing the Gate thing
+        //$this->authorize('update-post', $post);
+
+        /* if (Gate::denies('posts.update', $post)) {
+            abort(403, "you are not allowed");
+        } */
+
         $validated = $request->validated();
         $post->update($validated);
         $post->save();
@@ -115,6 +130,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = BlogPost::findOrFail($id);
+        
+        $this->authorize('posts.delete', $post);
+        /* if (Gate::denies('posts.delete', $post)) {
+            abort(403, "you are not allowed to Delete");
+        } */
         $post->delete();
         session()->flash('status', 'blog post was deleted');
 
