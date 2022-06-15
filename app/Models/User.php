@@ -28,6 +28,11 @@ class User extends Authenticatable
         return $this->hasMany(BlogPost::class);
     }
 
+    public static function scopeWithMostBlogPost($query)
+    {
+        return $query->withCount('BlogPost')->orderBy('blog_post_count', 'desc');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

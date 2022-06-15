@@ -6,6 +6,7 @@ use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder;
 
 class BlogPost extends Model
 {
@@ -20,6 +21,14 @@ class BlogPost extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    //local Scope
+    public static function scopeMostCommented($query)
+    {
+        // comments_count
+        return $query->withCount('comments')
+        ->orderBy('comments_count', 'desc');
     }
 
     public function user()

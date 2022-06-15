@@ -32,7 +32,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = BlogPost::withCount('comments')->get();
-        return view('posts.index', ['posts' => $posts]);
+        $MostCommented = BlogPost::MostCommented()->take(5)->get();
+
+        $MostActive = User::WithMostBlogPost()->take(5)->get();
+        
+        return view('posts.index', ['posts' => $posts, 'MostCommented' => $MostCommented, 'MostActive' => $MostActive]);
     }
 
     /**

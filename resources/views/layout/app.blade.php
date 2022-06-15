@@ -25,6 +25,10 @@
         left: .8rem;
     }
 
+    #mostCommented:hover {
+        text-decoration: underline;
+    }
+
 </style>
 
 <body>
