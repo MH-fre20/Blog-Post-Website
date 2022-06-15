@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Scopes\LatestScope;
+use App\Scopes\DeletedAdminScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -41,6 +42,8 @@ class BlogPost extends Model
         //we used static to make the use of :: instead of writing
         // $parent = new boot(); we used static which makes the
         // sentance look like this prent::boot();
+        static::addGlobalScope(new DeletedAdminScope);
+        
         parent::boot();
 
         static::addGlobalScope(new LatestScope);

@@ -43,9 +43,15 @@
 <div class="allpost">
     <h3 class="display">
         <li>{{ $loop->iteration }}</li>
+        @if ($post->trashed())
+        <del>
+        @endif
         <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="title">
             {{ $post->title }}
         </a>
+        @if ($post->trashed())
+        </del>
+        @endif
 
         <p>Added at {{ $post->created_at->diffForHumans() }} By {{ $post->user->name }}</p>
 
@@ -61,7 +67,8 @@
             Edit
         </a>
         @endcan
-
+        
+        @if (!$post->trashed())
         @can('delete', $post)
         <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST">
             @csrf
@@ -69,5 +76,6 @@
             <input type="submit" value="Delete" class="btn btn-primary">
         </form>
         @endcan
+        @endif
     </div>
 </div>
