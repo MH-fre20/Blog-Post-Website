@@ -9,12 +9,17 @@
             <li>{{ $post->title }}</li>
             <li>{{ $post->content }}</li>
             <li>Added {{ $post->created_at->diffForHumans() }}</li>
-
+             
             @if (now()->diffInDays($post->created_at) < 1)
-                <div class="alert alert-info">New!</div>
+            @component('components.badge')
+                New!
+            @endcomponent
             @endif
         </ul>
-        <h4>Comments</h4>
+        <h4>Comments 
+
+        </h4>
+        
         @forelse ($post->comments as $item)
             <p>{{ $item->content }}, added at {{ $item->created_at->diffForHumans() }}</p>
         @empty
