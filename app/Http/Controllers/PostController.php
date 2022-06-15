@@ -32,14 +32,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        $MostCommented = Cache::remember('MostCommented', now()->addSeconds(10), function () {
+        $MostCommented = Cache::remember('MostCommented', 60, function () {
             return BlogPost::MostCommented()->take(5)->get();
         });
 
-        $posts = BlogPost::withCount('comments')->with('user')->get();
-        //$MostCommented = BlogPost::scopeMostCommented()->take(5)->get();
+        $MostActive = Cache::remember('MostActive', now()->addSeconds(10), function () {
+            return User::WithMostBlogPost()->take(5)->get();
+        });
 
-        $MostActive = User::WithMostBlogPost()->take(5)->get();
+        $posts = BlogPost::withCount('comments')->with('user')->get();
+        //$MostCommented = BlogPost::MostCommented()->take(5)->get();
+
+        //$MostActive = User::WithMostBlogPost()->take(5)->get();
         
         return view('posts.index', ['posts' => $posts, 'MostCommented' => $MostCommented, 'MostActive' => $MostActive]);
     }

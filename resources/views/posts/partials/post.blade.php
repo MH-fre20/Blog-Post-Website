@@ -36,6 +36,11 @@
     .display:nth-child(n+1) {
         display: block;
     }
+
+    #myform > *, #myform form input{
+        background-color: var(--yellow);
+        color: azure !important;
+    }
 </style>
 
 @section('title', 'see all posts')

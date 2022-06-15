@@ -23,6 +23,7 @@
         gap: 0.3rem;
         position: relative;
         left: .8rem;
+        
     }
 
     #mostCommented:hover {
