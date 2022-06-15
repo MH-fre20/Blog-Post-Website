@@ -9,6 +9,7 @@ use Illuminate\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Cache;
 
 //  controller => Policy
 // 'show' => view,
@@ -31,8 +32,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::withCount('comments')->get();
-        $MostCommented = BlogPost::MostCommented()->take(5)->get();
+        $MostCommented = Cache::remember('MostCommented', now()->addSeconds(10), function () {
+            return BlogPost::MostCommented()->take(5)->get();
+        });
+
+        $posts = BlogPost::withCount('comments')->with('user')->get();
+        //$MostCommented = BlogPost::scopeMostCommented()->take(5)->get();
 
         $MostActive = User::WithMostBlogPost()->take(5)->get();
         

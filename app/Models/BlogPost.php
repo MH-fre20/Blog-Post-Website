@@ -59,6 +59,4 @@ class BlogPost extends Model
         }
     );
     }
-
-
 }
