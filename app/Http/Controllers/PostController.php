@@ -32,6 +32,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        /* Cache::put('cachekey', 'thats it', now()->addDays(1));
+        dd(Cache::get('cachekey')); */
+
         $MostCommented = Cache::remember('MostCommented', 60, function () {
             return BlogPost::MostCommented()->take(5)->get();
         });

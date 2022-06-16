@@ -25,6 +25,11 @@ class BlogPost extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     //local Scope
     public static function scopeMostCommented($query)
     {
