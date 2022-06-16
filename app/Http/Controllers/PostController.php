@@ -93,7 +93,47 @@ class PostController extends Controller
     {
         //abort_if(!isset($this->posts[$id]), 404);
 
-        return view('posts.show', ['post' => BlogPost::with('comments')->FindorFail($id)]);
+        $blogpost = Cache::remember("blog-post-{$id}", 60, function() use ($id) {
+            return BlogPost::with('comments')->FindorFail($id);
+        });
+
+        //To count the viewer of the page
+        $sessionId = session()->getId();
+        $counterKey = "blog-post-{$id}-counter";
+        $usersKey = "blog-post-{$id}-users";
+
+        $users = Cache::get($usersKey, []);
+        $usersUpdate = [];
+        $difference = 0;
+
+        foreach ($users as $session => $lastVisit) {
+            if (now()->diffInMinutes($lastVisit) >= 1) {
+                $difference--;
+            } else {
+                $usersUpdate[$session] = $lastVisit;
+            }
+        }
+
+        if (!array_key_exists($sessionId, $users) 
+        || now()->diffInMinutes($users[$sessionId]) >= 1) 
+        {
+            $difference++;
+        }
+
+        $usersUpdate[$sessionId] = now();
+        Cache::forever($usersKey, $usersUpdate);
+
+        if(!Cache::has($counterKey)) {
+            Cache::forever($counterKey, 1);
+        } else {
+            Cache::increment($counterKey, $difference);
+        }
+
+        $counter = Cache::get($counterKey);
+
+        return view('posts.show', ['post' => $blogpost,
+        'counter' => $counter
+        ]);
     }
 
     /**
@@ -144,10 +184,10 @@ class PostController extends Controller
     {
         $post = BlogPost::findOrFail($id);
         
-        $this->authorize('posts.delete', $post);
-        /* if (Gate::denies('posts.delete', $post)) {
+        //$this->authorize('posts.delete', $post);
+        if (Gate::denies('posts.delete', $post)) {
             abort(403, "you are not allowed to Delete");
-        } */
+        } 
         $post->delete();
         session()->flash('status', 'blog post was deleted');
 

@@ -16,6 +16,7 @@
             @endcomponent
             @endif
         </ul>
+        <p>currently Read by {{ $counter }} user</p>
         <h4>Comments 
 
         </h4>
