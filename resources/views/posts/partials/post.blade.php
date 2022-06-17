@@ -12,6 +12,7 @@
         transform: translate(0rem, 0rem);
         box-shadow: 0px 0px 0px 0px white;
         transition: transform .3s, box-shadow .3s;
+        text-align: left;
     }
 
     a {
@@ -41,23 +42,23 @@
         background-color: var(--yellow);
         color: azure !important;
     }
+
 </style>
 
 @section('title', 'see all posts')
 
-<div class="allpost">
-    <h3 class="display">
-        <li>{{ $loop->iteration }}</li>
+<div class="allpost" dir="rtl">
+    <div id="title">
         @if ($post->trashed())
         <del>
         @endif
-        <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="title">
-            {{ $post->title }}
-        </a>
+            <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="fs-4">
+                {{ $post->title }}
+            </a>
         @if ($post->trashed())
         </del>
         @endif
-
+    </div>
         <p>Added at {{ $post->created_at->diffForHumans() }} By {{ $post->user->name }}</p>
         @tags(['tags' => $post->tags])@endtags
 
@@ -66,7 +67,7 @@
         @else 
             <p>No comments yet!!!!</p>
         @endif
-    </h3>
+
     <div id="myform">
         @can('update', $post)
         <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-primary my-2">

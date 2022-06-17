@@ -3,11 +3,19 @@
 @section('content')
     <div class="row">
         <div class="col-8">
-            @forelse ($posts as $post)
-                @include('posts.partials.post')
-            @empty
-                No posts Found!!!
-            @endforelse
+            @if (isset($tag))
+                @forelse ($tag as $post)
+                    @include('posts.partials.post')
+                @empty
+                    No posts Found!!!
+                @endforelse
+            @else
+                @forelse ($posts as $post)
+                    @include('posts.partials.post')
+                @empty
+                    No posts Found!!!
+                @endforelse
+            @endif
         </div>
         <div class="col-4 mt-4">
             <div class="container">

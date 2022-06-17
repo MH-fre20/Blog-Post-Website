@@ -10,7 +10,8 @@ class PostTagController extends Controller
     public function index($tag)
     {
         $tags = Tag::findOrFail($tag);
-
-        return view('posts.index', ['posts' => $tags->BlogPosts]);
+        $tag = $tags->BlogPosts;
+        //dd($posts);
+        return view('posts.index', compact('tag'));
     }
 }
