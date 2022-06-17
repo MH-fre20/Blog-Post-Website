@@ -1,6 +1,5 @@
 ## SHOWING LATEST DEVELOPMENT OF THE BLOG-POST-WEBSITE
-
-![Screenshot 2022-06-03 095035](https://user-images.githubusercontent.com/56185049/171802501-36caf3b5-8231-48e7-9fe6-9e228182cad8.png)
+![Screenshot 2022-06-17 193737](https://user-images.githubusercontent.com/56185049/174340594-fdd3d2fb-172b-4d7a-9805-adaf533c6e73.png)
 ## Design for Mobile
 ![Screenshot 2022-06-05 150708](https://user-images.githubusercontent.com/56185049/172049692-d58ee265-c28a-48ff-ad81-31ceb2362f0a.png)
 |---------------------|
