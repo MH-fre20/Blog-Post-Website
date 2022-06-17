@@ -7,11 +7,12 @@
 
 :root {
     --yellow: rgb(228, 197, 20);
+    --sidebarColor: #FCF8E8;
 }
 
 body {
     overflow-x: hidden;
-    background-color: #FCF8E8;
+    background-color: var(--sidebarColor);
 }
 
 #mynav a {
@@ -65,7 +66,7 @@ body {
     top: 0;
     height: 100vh;
     width: 50%;
-    background-color: rgb(62, 170, 228);
+    background-color: #FFC54D;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
