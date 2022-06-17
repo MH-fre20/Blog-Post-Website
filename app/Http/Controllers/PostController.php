@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 
 //  controller => Policy
 // 'show' => view,
@@ -35,20 +36,13 @@ class PostController extends Controller
         /* Cache::put('cachekey', 'thats it', now()->addDays(1));
         dd(Cache::get('cachekey')); */
 
-        $MostCommented = Cache::remember('MostCommented', 60, function () {
-            return BlogPost::MostCommented()->take(5)->get();
-        });
-
-        $MostActive = Cache::remember('MostActive', now()->addSeconds(10), function () {
-            return User::WithMostBlogPost()->take(5)->get();
-        });
-
-        $posts = BlogPost::withCount('comments')->with('user')->get();
+        
+        $posts = BlogPost::withCount('comments')->with('user')->with('tags')->get();
         //$MostCommented = BlogPost::MostCommented()->take(5)->get();
 
         //$MostActive = User::WithMostBlogPost()->take(5)->get();
         
-        return view('posts.index', ['posts' => $posts, 'MostCommented' => $MostCommented, 'MostActive' => $MostActive]);
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -97,7 +91,7 @@ class PostController extends Controller
         //abort_if(!isset($this->posts[$id]), 404);
 
         $blogpost = Cache::remember("blog-post-{$id}", 60, function() use ($id) {
-            return BlogPost::with('comments')->FindorFail($id);
+            return BlogPost::with('comments')->with('tags')->FindorFail($id);
         });
 
         //To count the viewer of the page

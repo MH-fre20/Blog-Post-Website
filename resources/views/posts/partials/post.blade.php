@@ -59,6 +59,7 @@
         @endif
 
         <p>Added at {{ $post->created_at->diffForHumans() }} By {{ $post->user->name }}</p>
+        @tags(['tags' => $post->tags])@endtags
 
         @if ($post->comments_count)
             <p>{{ $post->comments_count }} comments</p>
