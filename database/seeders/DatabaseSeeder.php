@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\BlogPost;
 use Illuminate\Database\Seeder;
 use App\Models\Comment;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
@@ -20,19 +22,38 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        DB::table('users')->insert([
-            'name' => 'phpunit',
-            'email' => 'phpunit@gmail.com',
+        /* DB::table('users')->insert([
+            'name' => 'unit',
+            'email' => 'unit@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$XUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-        ]);
+            'is_admin' => '0'
+        ]); */
         // \App\Models\User::factory(10)->create();
         //factory(App\User::class, 20)->create;
-        User::factory()->count(5)->create();
 
-        $this->call(
+        $this->call([
+            UserTableSeeder::class,
+            TagsTableSeeder::class,
+            CommentTableSeeder::class,
+            BlogPostTableSeeder::class,
+            BlogPostTableSeeder::class
+        ]);
+
+        //$user = User::factory()->count(5)->create();
+        //Tag::factory()->count(5)->create();
+
+        /* $user = User::factory()->count(23)->create();
+
+        BlogPost::factory()->make()->each(function($post) use ($user) {
+            $post->user_id = $user->random()->id;
+            $post->save(); */
+
+        //dd($user);
+
+        /* $this->call(
             TagsTableSeeder::class
-        );
+        ); */
     }
 }

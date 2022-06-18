@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BlogPost;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -14,6 +15,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(23)->create();
+        $userCount = max((int)$this->command->ask('how many users do you want to create?', 5), 1);
+        User::factory()->count($userCount)->create();
     }
 }
