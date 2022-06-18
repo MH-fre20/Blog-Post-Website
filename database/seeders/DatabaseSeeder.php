@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             TagsTableSeeder::class,
             CommentTableSeeder::class,
             BlogPostTableSeeder::class,
-            BlogPostTableSeeder::class
+            BlogPostTagTableSeeder::class
         ]);
 
         //$user = User::factory()->count(5)->create();
