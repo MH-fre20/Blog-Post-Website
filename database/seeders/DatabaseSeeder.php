@@ -30,5 +30,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         //factory(App\User::class, 20)->create;
         User::factory()->count(5)->create();
+
+        $this->call(
+            TagsTableSeeder::class
+        );
     }
 }
