@@ -69,6 +69,17 @@ class PostController extends Controller
         $post->title = $validated['title'];
         $post->user_id = auth()->user()->id;
         $post->content = $validated['content'];
+        $hasFile = $request->hasFile('thumbnail');
+        if ($hasFile) {
+            $file = $request->file('thumbnail');
+            dump($file);
+            dump($file->getClientMimeType());
+            dump($file->getClientOriginalExtension());
+            dd($file->getClientOriginalName());
+
+            dd($file->store('public/thumbnails'));
+        }
+        die;
         $post->save();
 
         /*$post = BlogPost::create($validated);*/
