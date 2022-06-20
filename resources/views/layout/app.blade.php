@@ -26,10 +26,6 @@
         
     }
 
-    #mostCommented:hover {
-        text-decoration: underline;
-    }
-
 </style>
 
 <body>

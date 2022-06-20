@@ -19,6 +19,11 @@ class BlogPost extends Model
         'title',
         'content'
     ];
+
+    public function Image()
+    {
+        return $this->hasOne(Image::class);
+    }
     
     public function comments()
     {

@@ -5,12 +5,17 @@
 @section('content')
     <div class="p-3 py-4 row">
         <div class="col px-4">
-            <h3>This is show.index of Post id = {{ $post->id }}
+            @if ($post->Image)
+            <div style="background: url('{{ asset("/storage/".$post->Image->path) }}'); color: white; background-attachment: fixed; min-height: 500px;">
+                <h3 class="p-4 text-center"
+                style="text-shadow: 3px 3px gray">This is show.index of Post id = {{ $post->id }}
                 {{ $post->title }}
             </h3>
+            </div>
+            @endif
             <ul style="list-style: none">
-                
                 <li>{{ $post->content }}</li>
+                
                 <li>Added {{ $post->created_at->diffForHumans() }}</li>
 
                 @if (now()->diffInDays($post->created_at) < 1)
@@ -43,8 +48,8 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach ($MostCommented as $post)
-                        <li class="list-group-item" id="mostCommented">
-                            <a href="{{ route('posts.show', ['post' => $post->id]) }}">
+                        <li class="list-group-item">
+                            <a href="{{ route('posts.show', ['post' => $post->id]) }}" id="mostCommented">
                                 {{ $post->title }}</a>
                         </li>
                     @endforeach

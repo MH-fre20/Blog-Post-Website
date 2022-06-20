@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePost;
 use App\Models\BlogPost;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 //  controller => Policy
@@ -25,7 +27,7 @@ class PostController extends Controller
             'store', 'edit', 'update', 'destroy'
         ]);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -36,12 +38,12 @@ class PostController extends Controller
         /* Cache::put('cachekey', 'thats it', now()->addDays(1));
         dd(Cache::get('cachekey')); */
 
-        
+
         $posts = BlogPost::withCount('comments')->with('user')->with('tags')->get();
         //$MostCommented = BlogPost::MostCommented()->take(5)->get();
 
         //$MostActive = User::WithMostBlogPost()->take(5)->get();
-        
+
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -69,22 +71,36 @@ class PostController extends Controller
         $post->title = $validated['title'];
         $post->user_id = auth()->user()->id;
         $post->content = $validated['content'];
-        $hasFile = $request->hasFile('thumbnail');
-        if ($hasFile) {
-            $file = $request->file('thumbnail');
-            dump($file);
-            dump($file->getClientMimeType());
-            dump($file->getClientOriginalExtension());
-            dd($file->getClientOriginalName());
-
-            dd($file->store('public/thumbnails'));
-        }
-        die;
         $post->save();
 
+        //BlogPost::create($validated);
+
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('thumbnails');
+
+            //storing using relations
+            $post->Image()->save(
+                Image::create(['path' => $path])
+            );
+        }
+        /*  $hasFile = $request->hasFile('thumbnail');
+        if ($hasFile) {
+            $file = $request->file('thumbnail'); */
+        /* dump($file);
+            dump($file->getClientMimeType());
+            dump($file->getClientOriginalExtension());
+            dd($file->getClientOriginalName()); */
+        /* 
+            $file->store('thumbnails');
+
+            //get the url of the stored file 
+            dd(Storage::url($file)); */
+        //
+        /*  dd(Storage::disk('public')->put('thumbnails', $file)); */
+        /*  }
+        die; */
+
         /*$post = BlogPost::create($validated);*/
-
-
         $request->session()->flash('status', 'blog was 
         created by yourself');
 
@@ -101,7 +117,7 @@ class PostController extends Controller
     {
         //abort_if(!isset($this->posts[$id]), 404);
 
-        $blogpost = Cache::remember("blog-post-{$id}", 60, function() use ($id) {
+        $blogpost = Cache::remember("blog-post-{$id}", 60, function () use ($id) {
             return BlogPost::with('comments')->with('tags')->FindorFail($id);
         });
 
@@ -122,16 +138,17 @@ class PostController extends Controller
             }
         }
 
-        if (!array_key_exists($sessionId, $users) 
-        || now()->diffInMinutes($users[$sessionId]) >= 1) 
-        {
+        if (
+            !array_key_exists($sessionId, $users)
+            || now()->diffInMinutes($users[$sessionId]) >= 1
+        ) {
             $difference++;
         }
 
         $usersUpdate[$sessionId] = now();
         Cache::forever($usersKey, $usersUpdate);
 
-        if(!Cache::has($counterKey)) {
+        if (!Cache::has($counterKey)) {
             Cache::forever($counterKey, 1);
         } else {
             Cache::increment($counterKey, $difference);
@@ -139,8 +156,9 @@ class PostController extends Controller
 
         $counter = Cache::get($counterKey);
 
-        return view('posts.show', ['post' => $blogpost,
-        'counter' => $counter
+        return view('posts.show', [
+            'post' => $blogpost,
+            'counter' => $counter
         ]);
     }
 
@@ -166,7 +184,7 @@ class PostController extends Controller
     {
         $post = BlogPost::findOrFail($id);
         $this->authorize('posts.update', $post);
-        
+
         //Another way of doing the Gate thing
         //$this->authorize('update-post', $post);
 
@@ -177,6 +195,21 @@ class PostController extends Controller
         $validated = $request->validated();
         $post->update($validated);
         $post->save();
+
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('thumbnails');
+
+            if ($post->Image) {
+                Storage::delete($post->Image->path);
+                $post->Image->path = $path;
+                $post->Image->save();
+            } else {
+                //storing using relations
+                $post->Image()->save(
+                    Image::create(['path' => $path])
+                );
+            }
+        }
 
         $request->session()->flash('status', "Blog post was updated");
         return redirect()->route('posts.show', ['post' => $post->id]);
@@ -191,11 +224,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = BlogPost::findOrFail($id);
-        
+
         //$this->authorize('posts.delete', $post);
         if (Gate::denies('posts.delete', $post)) {
             abort(403, "you are not allowed to Delete");
-        } 
+        }
         $post->delete();
         session()->flash('status', 'blog post was deleted');
 
