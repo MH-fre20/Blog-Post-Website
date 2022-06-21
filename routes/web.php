@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\notHomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostTagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,6 +68,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/secret', [notHomeController::class, 'secret'])
 ->name('secret')
 ->middleware('can:hello_mohamad');
+
+
+Route::resource('/users', UserController::class)->only(['show', 'edit', 'update']);
+
 
 //Route for Tags
 Route::get("posts/tag/{tag}", [PostTagController::class, 'index'])

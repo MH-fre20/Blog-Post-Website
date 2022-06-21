@@ -6,7 +6,7 @@
         @csrf
         @method('PUT')
         @include('posts.partials.form')
-        <div>
+        <div class="row mt-4">
             <input type="submit" value="Update" class="btn btn-primary btn-block form-control">
         </div>
     </form>
