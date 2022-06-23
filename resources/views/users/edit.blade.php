@@ -6,9 +6,8 @@
         @csrf
         @method('PUT')
         <div class="row">
-            <div class="col-4">
-                <img src="" alt="" class="img-thumbnail avatar">
-
+            <div class="col-4 mt-3">
+                <img src="" alt="" class="img-thumbnail rounded w-100 h-100">
                 <div class="card mt-4">
                     <div class="card-body">
                         <h6>Upload a different photo</h6>

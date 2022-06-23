@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\blade;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        DB::listen(function($query) {
+            Log::info(
+                $query->sql,
+                $query->bindings
+            );
+        });
+
+
         Blade::aliasComponent('components.tags', 'tags');
 
         View::composer('posts.show', 'App\Http\ViewComposer\ActivityComposer');
