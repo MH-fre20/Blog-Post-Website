@@ -159,3 +159,27 @@ body {
 #mostCommented:hover {
     text-decoration: underline;
 }
+
+textarea {
+    overflow-y: scroll;
+    height: 8rem;
+    resize: none;
+    cursor: pointer;
+}
+
+textarea::-webkit-scrollbar {
+    width: .7rem;
+    cursor: pointer;
+}
+
+textarea::-webkit-scrollbar-track {
+    cursor: pointer;
+    background: rgba(6, 3, 3, 0.517);
+    margin-block: 0rem;
+    border-radius: .2rem;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: rgba(6, 3, 3, 0.887);
+    border-radius: .2rem;
+}
