@@ -146,6 +146,10 @@ body {
         list-style: none;
         border: 2px solid black;
     }
+
+    #theBelow {
+        width: 100%;
+    }
 }
 
 #mostCommented {

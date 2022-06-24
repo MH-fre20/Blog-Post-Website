@@ -9,7 +9,7 @@
             @if ($post->Image)
             <div id="ImageOfPost" style="background: url('{{ asset("/storage/".$post->Image->path) }}'); color: white;  
             min-height: 500px;
-            min-width: 400px;
+            min-width: 300px;
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center; 
@@ -45,7 +45,7 @@
             @endforelse
         </div>
 
-        <div class="col-4">
+        <div class="col-4" id="theBelow">
             <div class="card" style="width: 100%;">
                 <div class="card-body">
                     <h5 class="card-title">Most Commented</h5>
@@ -62,6 +62,7 @@
                     @endforeach
                 </ul>
             </div>
+            <br></br>
             <div class="card" style="width: 100%;">
                 <div class="card-body">
                     <h5 class="card-title">Most Active</h5>

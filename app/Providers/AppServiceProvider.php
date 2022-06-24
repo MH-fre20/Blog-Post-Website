@@ -36,7 +36,6 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-
         Blade::aliasComponent('components.tags', 'tags');
 
         View::composer('posts.show', 'App\Http\ViewComposer\ActivityComposer');
