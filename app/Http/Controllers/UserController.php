@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserImage;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -76,9 +78,30 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserImage $request, User $user)
     {
-        //
+        $validated = $request->validated();
+        $user->update($validated);
+        
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars');
+
+            if ($user->Image) {
+                $user->Image->path = $path;
+                $user->Image->save();
+            } else {
+                //$image = new Image();
+                //$image->path = $path;
+                //instead of these two lines above
+                // we used make
+                $user->Image()->save(
+                    Image::make(['path' => $path])
+                );
+            }
+        }
+        $user->save();
+
+        return view('users.show', ['user' => $user]);
     }
 
     /**

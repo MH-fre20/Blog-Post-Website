@@ -2,12 +2,19 @@
 
 @section('title', $post->title)
 
+
 @section('content')
     <div class="p-3 py-4 row">
         <div class="col px-4">
             @if ($post->Image)
-            <div style="background: url('{{ asset("/storage/".$post->Image->path) }}'); color: white; background-attachment: fixed; min-height: 500px;">
-                <h3 class="p-4 text-center"
+            <div id="ImageOfPost" style="background: url('{{ asset("/storage/".$post->Image->path) }}'); color: white;  
+            min-height: 500px;
+            min-width: 400px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center; 
+            text-align: center">
+                <h3 class="p-4"
                 style="text-shadow: 3px 3px gray">This is show.index of Post id = {{ $post->id }}
                 {{ $post->title }}
             </h3>

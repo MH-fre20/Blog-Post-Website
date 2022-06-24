@@ -24,7 +24,10 @@ class User extends Authenticatable
         'is_admin'
     ];
 
-    
+    public function Image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 
     public function BlogPost()
     {

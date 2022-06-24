@@ -7,7 +7,8 @@
         @method('PUT')
         <div class="row">
             <div class="col-4 mt-3">
-                <img src="" alt="" class="img-thumbnail rounded w-100 h-100">
+                <img src="{{ $user->Image ? asset("/storage/".$user->Image->path) : '' }}" alt="" class="img-thumbnail rounded" 
+                style="min-height: 4rem;">
                 <div class="card mt-4">
                     <div class="card-body">
                         <h6>Upload a different photo</h6>
@@ -20,6 +21,7 @@
                     <label for="">Name: </label>
                     <input type="text" value="" class="form-control" name="name">
                 </div>
+                @component('components.error')@endcomponent
 
                 <div class="form-group mt-4">
                     <input type="submit" class="btn btn-primary" value="Save Changes">

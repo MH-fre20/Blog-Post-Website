@@ -23,7 +23,7 @@ class BlogPost extends Model
 
     public function Image()
     {
-        return $this->hasOne(Image::class);
+        return $this->morphOne(Image::class, 'imageable');
     }
     
     public function comments()

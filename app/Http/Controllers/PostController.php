@@ -79,8 +79,7 @@ class PostController extends Controller
 
             //storing using relations
             $post->Image()->save(
-                Image::create(['path' => $path])
-            );
+                Image::make(['path' => $path]));
         }
         /*  $hasFile = $request->hasFile('thumbnail');
         if ($hasFile) {
@@ -183,17 +182,14 @@ class PostController extends Controller
     {
         $post = BlogPost::findOrFail($id);
         //$this->authorize('posts.update', $post);
-
         //Another way of doing the Gate thing
         //$this->authorize('update-post', $post);
 
         /* if (Gate::denies('posts.update', $post)) {
             abort(403, "you are not allowed");
         } */
-
         $validated = $request->validated();
         $post->update($validated);
-        $post->save();
 
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('thumbnails');
@@ -205,10 +201,11 @@ class PostController extends Controller
             } else {
                 //storing using relations
                 $post->Image()->save(
-                    Image::create(['path' => $path])
+                    Image::make(['path' => $path])
                 );
             }
         }
+        $post->save();
 
         $request->session()->flash('status', "Blog post was updated");
         return redirect()->route('posts.show', ['post' => $post->id]);

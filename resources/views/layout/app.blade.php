@@ -58,20 +58,19 @@
         </div>
         <div class="slideshow">
             <i class="fa-solid fa-xmark fa-3x" id="close"></i>
-            <a href="{{ route('nothome.index') }}">Home</a>
-            <a href="{{ route('nothome.contact') }}">Contact</a>
-            <a href="{{ route('posts.index') }}">Blog Posts</a>
-            <a href="{{ route('posts.create') }}">Add</a>
+            <a href="{{ route('nothome.index') }}"  id="size">Home</a>
+            <a href="{{ route('nothome.contact') }}"  id="size">Contact</a>
+            <a href="{{ route('posts.index') }}"  id="size">Blog Posts</a>
+            <a href="{{ route('posts.create') }}"  id="size">Add</a>
             @guest
                 @if (Route::has('register'))
-                    <a class="p-2 text-dark" href="{{ route('register') }}">Register</a>
+                    <a class="p-2 text-dark" href="{{ route('register') }}" id="size">Register</a>
                 @endif
-                <a class="p-2 text-dark" href="{{ route('login') }}">Login</a>
+                <a class="p-2 text-dark" href="{{ route('login') }}" id="size">Login</a>
             @else
-                <a class="p-2 text-dark" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();document.querySelector('#logout-form').submit();" id="unique">Logout
+            <a class="p-2 text-dark" id="size" href="{{ route('logout') }}" onclick="event.preventDefault();document.querySelector('#logout-form').submit();" id="unique" style="font-size: 1.7rem;">Logout
                     ({{ Auth::user()->name }})</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="visibility: hidden;">
                     @csrf</form>
             @endguest
             </div>
