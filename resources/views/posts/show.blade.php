@@ -1,7 +1,11 @@
 @extends('layout.app')
 
 @section('title', $post->title)
-
+<style>
+    li {
+        list-style: none;
+    }
+</style>
 
 @section('content')
     <div class="p-3 py-4 row">
@@ -14,16 +18,22 @@
             background-repeat: no-repeat;
             background-position: center; 
             text-align: center">
+                <h3 class="p-4" style="text-shadow: 3px 3px gray">This is show.index of Post id = {{ $post->id }}
+                {{ $post->title }}
+            </h3>
+            
+            </div>
+            <li>{{ $post->content }}</li>
+            @else
+            <ul style="list-style: none">
                 <h3 class="p-4"
                 style="text-shadow: 3px 3px gray">This is show.index of Post id = {{ $post->id }}
                 {{ $post->title }}
             </h3>
-            </div>
-            @endif
-            <ul style="list-style: none">
                 <li>{{ $post->content }}</li>
+            @endif
                 
-                <li>Added {{ $post->created_at->diffForHumans() }}</li>
+                @component('components.updated', ['date' => $post->created_at, 'name' => $post->user->name])@endcomponent
 
                 @if (now()->diffInDays($post->created_at) < 1)
                     @component('components.badge')
@@ -36,10 +46,13 @@
                 @tags(['tags' => $post->tags])
                 @endtags
             </div>
-            <h4>Comments
-            </h4>
+            <h4>Comments</h4>
+            @include('comments._form')
+
             @forelse ($post->comments as $item)
-                <p>{{ $item->content }}, added at {{ $item->created_at->diffForHumans() }}</p>
+                {{ $item->content }} @component('components.updated', ['date' => $item->created_at, 'name' => $item->user->name])
+                @endcomponent
+                
             @empty
                 <p class="p-2 shadow-3 shadow text-blue-400">no comments yet !!!</p>
             @endforelse

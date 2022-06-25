@@ -18,14 +18,26 @@ body {
 #mynav a {
     text-decoration: none;
     transition: all 0.3s;
-    background-color: var(--yellow);
+    background-color: none;
     border-radius: 0.2rem;
     color: black !important;
     margin: 0rem 0.2rem;
+
 }
 
-#mynav a:hover {
-    background-color: rgb(197, 169, 8);
+a:after {
+    content: "";
+    width: 0px;
+    height: 2px;
+    display: block;
+    background: black;
+    transition: width 0.3s ease;
+    
+    }
+
+#mynav a:hover:after {
+    width: 100%;
+    background-color: black;
     color: white !important;
 }
 
@@ -128,6 +140,10 @@ body {
 
 @media screen and (max-width: 840px) {
 
+    #mydesignform {
+        width: 100% !important;
+    }
+
     #mynav a {
         display: none;
     }
@@ -162,13 +178,13 @@ body {
 
 textarea {
     overflow-y: scroll;
-    height: 8rem;
+    height: 5rem;
     resize: none;
     cursor: pointer;
 }
 
 textarea::-webkit-scrollbar {
-    width: .7rem;
+    width: .4rem;
     cursor: pointer;
 }
 

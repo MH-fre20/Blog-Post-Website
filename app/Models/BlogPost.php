@@ -74,7 +74,6 @@ class BlogPost extends Model
         
         static::restoring(function (BlogPost $blogPost) {
             $blogPost->comments()->restore();
-        }
-    );
+        });
     }
 }

@@ -24,6 +24,11 @@ class User extends Authenticatable
         'is_admin'
     ];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function Image()
     {
         return $this->morphOne(Image::class, 'imageable');

@@ -59,8 +59,10 @@
         </del>
         @endif
     </div>
-        <p>Added at {{ $post->created_at->diffForHumans() }} By {{ $post->user->name }}</p>
         @tags(['tags' => $post->tags])@endtags
+
+        @component('components.updated', ['date' => $post->created_at, 'name' => $post->user->name])
+        Updated at @endcomponent
 
         @if ($post->comments_count)
             <p>{{ $post->comments_count }} comments</p>

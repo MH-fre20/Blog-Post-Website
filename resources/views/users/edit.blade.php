@@ -7,8 +7,8 @@
         @method('PUT')
         <div class="row">
             <div class="col-4 mt-3">
-                <img src="{{ $user->Image ? asset("/storage/".$user->Image->path) : '' }}" alt="" class="img-thumbnail rounded" 
-                style="min-height: 4rem;">
+                <img src="{{ $user->Image ? asset("/storage/".$user->Image->path) : asset('stylization/download.png') }}" alt="" class="img-thumbnail rounded" 
+                style="min-height: 60%; min-width: 100%;">
                 <div class="card mt-4">
                     <div class="card-body">
                         <h6>Upload a different photo</h6>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 p-4">
+            <div class="col-8 p-3">
                 <div class="form-group">
                     <label for="">Name: </label>
                     <input type="text" value="" class="form-control" name="name">

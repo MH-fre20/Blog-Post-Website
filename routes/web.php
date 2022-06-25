@@ -72,6 +72,8 @@ Route::get('/secret', [notHomeController::class, 'secret'])
 
 Route::resource('/users', UserController::class)->only(['show', 'edit', 'update']);
 
+Route::resource('posts.comments', 'PostCommentController')->only(['store']);
+
 
 //Route for Tags
 Route::get("posts/tag/{tag}", [PostTagController::class, 'index'])
