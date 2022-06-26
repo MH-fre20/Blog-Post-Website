@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\notHomeController;
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostTagController;
 use App\Http\Controllers\UserController;
@@ -69,11 +70,9 @@ Route::get('/secret', [notHomeController::class, 'secret'])
 ->name('secret')
 ->middleware('can:hello_mohamad');
 
-
 Route::resource('/users', UserController::class)->only(['show', 'edit', 'update']);
 
-Route::resource('posts.comments', 'PostCommentController')->only(['store']);
-
+Route::resource('posts.comments', PostCommentController::class)->only(['store']);
 
 //Route for Tags
 Route::get("posts/tag/{tag}", [PostTagController::class, 'index'])

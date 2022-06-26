@@ -19,7 +19,7 @@
             <div class="col-8 p-3">
                 <div class="form-group">
                     <label for="">Name: </label>
-                    <input type="text" value="" class="form-control" name="name">
+                    <input type="text" value="{{ old('content', optional($user ?? null)->name) }}" class="form-control" name="name">
                 </div>
                 @component('components.error')@endcomponent
 

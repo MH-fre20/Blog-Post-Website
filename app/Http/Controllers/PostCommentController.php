@@ -13,8 +13,13 @@ class PostCommentController extends Controller
         $this->middleware('auth')->only(['store']);
     }
 
-    public function store(BlogPost $post, StoreComment $request)
+    public function store(BlogPost $post,StoreComment $request)
     {
-        //last check here
+        $post->comments()->create([
+            'content' => $request->input('content'),
+            'user_id' => $request->user()->id
+        ]);
+        
+        return redirect()->back();
     }
 }

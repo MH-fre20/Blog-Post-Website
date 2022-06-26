@@ -50,9 +50,7 @@
             @include('comments._form')
 
             @forelse ($post->comments as $item)
-                {{ $item->content }} @component('components.updated', ['date' => $item->created_at, 'name' => $item->user->name])
-                @endcomponent
-                
+                {{ $item->content }} @component('components.updated', ['date' => $item->created_at, 'name' => $item->user->name])@endcomponent
             @empty
                 <p class="p-2 shadow-3 shadow text-blue-400">no comments yet !!!</p>
             @endforelse

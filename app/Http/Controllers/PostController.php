@@ -115,7 +115,7 @@ class PostController extends Controller
     {
         //abort_if(!isset($this->posts[$id]), 404);
 
-        $blogpost = Cache::remember("blog-post-{$id}", 60, function () use ($id) {
+        $blogpost = Cache::tags(['blog-post'])->remember("blog-post-{$id}", 60, function () use ($id) {
             return BlogPost::with('comments')->with('tags')->FindorFail($id);
         });
 

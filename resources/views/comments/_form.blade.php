@@ -1,9 +1,9 @@
 <div class="mb-2 mt-2">
 @auth
-    <form action="{{ route('posts.comments') }}" method="POST" id="mydesignform">
+    <form action="{{ route('posts.comments.store', ['post' => $post->id]) }}" method="POST" id="mydesignform">
         @csrf
         <div class="mb-3 row form-group">
-            <textarea type="text" id="title" name="title" class="form-control"></textarea>
+            <textarea type="text" id="title" name="content" class="form-control"></textarea>
         </div>
         <div class="mt-4 row">
             <input type="submit" value="Add Comment" class="btn btn-primary btn-block form-control">
