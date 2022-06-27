@@ -70,7 +70,7 @@ Route::get('/secret', [notHomeController::class, 'secret'])
 ->name('secret')
 ->middleware('can:hello_mohamad');
 
-Route::resource('/users', UserController::class)->only(['show', 'edit', 'update']);
+Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
 
 Route::resource('posts.comments', PostCommentController::class)->only(['store']);
 
