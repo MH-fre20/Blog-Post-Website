@@ -1,10 +1,3 @@
-@media screen and (max-width: 653px) {
-    #mydesignform {
-        width: 80%;
-        padding: 2rem;
-    }
-}
-
 :root {
     --yellow: rgb(228, 197, 20);
     --sidebarColor: #FCF8E8;
@@ -194,6 +187,13 @@ a:after {
     }
 }
 
+@media screen and (max-width: 653px) {
+    #mydesignform {
+        width: 80%;
+        padding: 2rem;
+    }
+}
+
 #mostCommented {
     text-decoration: none;
 }
@@ -233,8 +233,8 @@ textarea::-webkit-scrollbar-thumb {
 .GoToTop {
     font-size: 2rem;
     position: fixed;
-    top: 85%;
-    left: 85%;
+    right: 5rem;
+    bottom: 8rem;
     z-index: 2;
     transition: all .7s;
     opacity: 0;
@@ -242,11 +242,12 @@ textarea::-webkit-scrollbar-thumb {
     display: inline-block;
 }
 
-.rotate {
-    transform: rotate(360deg);
-}
-
 .activeToTop {
     opacity: 1;
     transform: translateY(0%);
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
 }

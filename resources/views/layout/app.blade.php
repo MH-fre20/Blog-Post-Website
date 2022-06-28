@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="{{ asset('/stylization/style.css') }}">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/b3c415d1c4.js" crossorigin="anonymous"></script>
-    
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <title> Laravel App - @yield('title')</title>
 </head>
 <style>
@@ -88,16 +90,39 @@
         @endguest
     </div>
     <div class="overlay"></div>
-    <div class="GoToTop" ><i class="fa-solid fa-circle-arrow-up fa-2xl"></i></div>
+    <div class="GoToTop" href="#body"><i class="fa-solid fa-circle-arrow-up fa-2xl"></i></div>
     <div class="container mt-7">
         @if (session('status'))
             <div class="alert alert-success" style="z-index: 1; margin-top: 1.8rem;">
                 <li>{{ session('status') }}</li>
             </div>
         @endif
+        <div class="mt-5">
             @yield('content')
+        </div>
     </div>
     <script src="{{ asset('/stylization/script.js') }}" rel="stylesheet"></script>
+    <script>
+        ScrollReveal({
+            reset: true,
+            distance: '30px',
+            duration: 2000,
+            delay: 200
+        });
+
+        ScrollReveal().reveal('#reveal');
+    </script>
+
+    <script>
+        $(".GoToTop").on("click", function(e) {
+            // 1
+            e.preventDefault();
+            // 3
+            $("html, body").animate({
+                scrollTop: $("html").offset().top
+            }, 800);
+        });
+    </script>
 
 </body>
 

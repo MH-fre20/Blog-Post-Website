@@ -47,8 +47,8 @@
 
 @section('title', 'see all posts')
 
-<div class="allpost">
-    <div id="title">
+<div class="allpost" id="reveal">
+    <div id="title" >
         @if ($post->trashed())
         <del>
         @endif

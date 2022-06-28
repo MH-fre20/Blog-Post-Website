@@ -21,9 +21,9 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function BlogPost()
+    public function commentable()
     {
-        return $this->belongsTo(BlogPost::class);
+        return $this->morphTo();
     }
 
     protected static function boot()
@@ -33,7 +33,9 @@ class Comment extends Model
         parent::boot();
 
         static::creating(function (Comment $comment) {
-            cache()->tags(['blog-post'])->forget("blog-post-{$comment->blog_post_id}");
+            if ($comment->commentable_type === BlogPost::class) {
+            cache()->tags(['blog-post'])->forget("blog-post-{$comment->commentable_id}"); 
+            }
         });
 
     }
