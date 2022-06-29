@@ -9,8 +9,6 @@ const mynav = document.querySelector("#mynav");
 const GoToTop = document.querySelector(".GoToTop");
 const body = document.querySelector("body");
 
-
-
 window.addEventListener("scroll", () => {
     /* window.scrollTo({
         top: 0,

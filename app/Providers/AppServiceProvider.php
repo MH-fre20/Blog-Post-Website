@@ -37,8 +37,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::aliasComponent('components.tags', 'tags');
-
+        Blade::aliasComponent('components.comment-form', 'commentForm');
+        Blade::aliasComponent('components.comment-list', 'commentList');
+        
         View::composer('posts.show', 'App\Http\ViewComposer\ActivityComposer');
         View::composer('posts.index', 'App\Http\ViewComposer\ActivityComposer');
+        
     }
 }

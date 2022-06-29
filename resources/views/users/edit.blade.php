@@ -6,7 +6,7 @@
         @csrf
         @method('PUT')
         <div class="row">
-            <div class="col-4 mt-3">
+            <div class="col-4 mt-4">
                 <img src="{{ $user->Image ? asset("/storage/".$user->Image->path) : asset('stylization/download.png') }}" alt="" class="img-thumbnail rounded" 
                 style="min-height: 60%; min-width: 100%;">
                 <div class="card mt-4">

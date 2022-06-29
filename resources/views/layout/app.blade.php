@@ -10,7 +10,8 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/b3c415d1c4.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <title> Laravel App - @yield('title')</title>
 </head>
@@ -104,7 +105,7 @@
     <script src="{{ asset('/stylization/script.js') }}" rel="stylesheet"></script>
     <script>
         ScrollReveal({
-            reset: true,
+            reset: false,
             distance: '30px',
             duration: 2000,
             delay: 200
@@ -123,7 +124,6 @@
             }, 800);
         });
     </script>
-
 </body>
 
 </html>

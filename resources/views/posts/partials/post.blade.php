@@ -26,7 +26,6 @@
 
     .allpost:hover {
         box-shadow:14px -14px 1px 1px lightblue;
-        transform: translate(-.6rem, .6rem);
         color: lightsalmon;
     }
 
@@ -42,13 +41,12 @@
         background-color: var(--yellow);
         color: azure !important;
     }
-
 </style>
 
 @section('title', 'see all posts')
 
 <div class="allpost" id="reveal">
-    <div id="title" >
+    <div id="title">
         @if ($post->trashed())
         <del>
         @endif

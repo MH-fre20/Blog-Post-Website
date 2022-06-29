@@ -17,6 +17,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $attributes = [
+        'is_admin' => false
+    ];
+
     protected $fillable = [
         'name',
         'email',

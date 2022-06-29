@@ -16,11 +16,12 @@ class UserCommentController extends Controller
     public function store(User $user,StoreComment $request)
     {
         //instead of using Comment::create()
-        $user->commentsOn()->create([
+        $user->commentOn()->create([
             'content' => $request->input('content'),
-            'user_id' => $request->user()->id
+            'user_id' => $request->user()->id // you could use auth()->user()->id
         ]);
         
-        return redirect()->back()->withStatus('Comment was created');
+        return redirect()->back()
+        ->withStatus('Comment was created');
     } 
 }

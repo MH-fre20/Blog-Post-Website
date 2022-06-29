@@ -40,8 +40,8 @@ a:after {
     display: block;
     background: black;
     transition: width 0.3s ease;
-    
-    }
+
+}
 
 #mynav a:hover:after {
     width: 100%;
@@ -117,8 +117,8 @@ a:after {
     top: 2rem;
     right: 2rem;
     width: 3rem;
-    color:rgb(0, 0, 0);
-} 
+    color: rgb(0, 0, 0);
+}
 
 .overlay {
     z-index: 2;

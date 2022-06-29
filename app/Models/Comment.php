@@ -35,7 +35,9 @@ class Comment extends Model
         static::creating(function (Comment $comment) {
             if ($comment->commentable_type === BlogPost::class) {
             cache()->tags(['blog-post'])->forget("blog-post-{$comment->commentable_id}"); 
-            }
+            cache()->tags(['blog-post'])->forget('mostCommented');
+        
+        }
         });
 
     }
