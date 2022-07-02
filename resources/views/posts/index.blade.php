@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
             @if (isset($tag))
                 @forelse ($tag as $post)
                     @include('posts.partials.post')
@@ -13,13 +13,15 @@
                 @forelse ($posts as $post)
                     @include('posts.partials.post')
                 @empty
+                <div class="mt-4">
                     No posts Found!!!
+                </div>
                 @endforelse
             @endif
         </div>
-        <div class="col-4 mt-4">
-            <div class="container">
-                <div class="row">
+        <div class="col-md-4 mt-4">
+            <div class="container" id="fixed-width">
+                <div>
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
                             <h5 class="card-title">Most Commented</h5>
@@ -38,7 +40,7 @@
                     </div>
                 </div>
                 <br></br>
-                <div class="row">
+                <div>
                     <div class="card" style="width: 100%;">
                         <div class="card-body">
                             <h5 class="card-title">Most Active</h5>

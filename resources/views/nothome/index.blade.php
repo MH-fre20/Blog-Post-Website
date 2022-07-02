@@ -4,10 +4,11 @@
 
 
 @section('content')
-    <h1 class="m-4">This is home.index</h1>
-    
-    @can('hello_mohamad')
-    <a href="{{ route('secret') }}">admin page</a>
-        <span>hello you are the admin</span>
-    @endcan
+    <div class="pt-4">
+        <h1>This is home.index</h1>
+        @can('hello_mohamad')
+            <a href="{{ route('secret') }}">admin page</a>
+            <span>hello you are the admin</span>
+        @endcan
+    </div>
 @endsection

@@ -9,7 +9,6 @@
             <div class="col-8 mt-4">
                 <h3>{{ $user->name }}</h3>
             </div>
-
             @commentForm(['route' => route('users.comments.store', ['user' => $user->id])])
             @endcommentForm
 

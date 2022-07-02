@@ -2,7 +2,7 @@
 @section('title', 'Update the post')
 
 @section('content')
-    <form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data" class="m-4">
+    <form id="fomola" action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST" enctype="multipart/form-data" class="m-3">
         @csrf
         @method('PUT')
         @include('posts.partials.form')

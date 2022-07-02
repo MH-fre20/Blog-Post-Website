@@ -98,7 +98,7 @@
                 <li>{{ session('status') }}</li>
             </div>
         @endif
-        <div class="mt-5">
+        <div class="mt-4">
             @yield('content')
         </div>
     </div>

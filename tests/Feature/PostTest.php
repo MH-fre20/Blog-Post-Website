@@ -7,10 +7,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class PostTest extends TestCase
 {
     use RefreshDatabase;
+    
     /**
      * A basic feature test example.
      *
@@ -18,6 +20,7 @@ class PostTest extends TestCase
      */
 
      /** @test */
+
     public function test_Post_Test()
     {
         $user = User::factory()->create();
@@ -99,18 +102,19 @@ class PostTest extends TestCase
 
     public function test_if_stored()
     {
+        
         $param = [
             'title' => 'nihaw',
             'content' => 'haha'
         ];
-
+    
         $this->post('/posts', $param)
         ->assertStatus(302);
     }
 
     public function test_if_updated()
     {
-        $user = User::factory()->create();
+        $user = $this->user();
         $post = new BlogPost();
         $post->title = 'hellow';
         $post->content = 'content';
@@ -126,7 +130,7 @@ class PostTest extends TestCase
             'content' => 'i am good'
         ];
 
-        $this->put('/posts/{$post->id}', $param)
+        $this->put("/posts/{$post->id}", $param)
         ->assertStatus(302);
     }
 
@@ -139,7 +143,7 @@ class PostTest extends TestCase
         $post->user_id = $user->id;
         $post->save();
 
-        $this->delete('/posts/{$post->id}')
+        $this->delete("/posts/{$post->id}")
         ->assertStatus(302);
     }
 }
