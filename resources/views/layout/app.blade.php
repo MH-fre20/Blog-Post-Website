@@ -92,9 +92,9 @@
     </div>
     <div class="overlay"></div>
     <div class="GoToTop" href="#body"><i class="fa-solid fa-circle-arrow-up fa-2xl"></i></div>
-    <div class="container mt-7">
+    <div class="container mt-7 mb-0">
         @if (session('status'))
-            <div class="alert alert-success" style="z-index: 1; margin-top: 1.8rem;">
+            <div class="alert alert-success" id="session" style="z-index: 1; margin-top: 1.8rem;">
                 <li>{{ session('status') }}</li>
             </div>
         @endif
@@ -122,6 +122,10 @@
             $("html, body").animate({
                 scrollTop: $("html").offset().top
             }, 800);
+        });
+
+        $(document).ready(function() {
+            $('#session').fadeIn().delay(10000).fadeOut();
         });
     </script>
 </body>

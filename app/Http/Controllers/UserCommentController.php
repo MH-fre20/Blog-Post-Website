@@ -20,8 +20,9 @@ class UserCommentController extends Controller
             'content' => $request->input('content'),
             'user_id' => $request->user()->id // you could use auth()->user()->id
         ]);
+
+        $request->session()->flash('status', "Comment was created");
         
-        return redirect()->back()
-        ->withStatus('Comment was created');
+        return redirect()->back();
     } 
 }

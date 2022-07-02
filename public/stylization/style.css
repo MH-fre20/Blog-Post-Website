@@ -258,3 +258,22 @@ textarea::-webkit-scrollbar-thumb {
     height: 100%;
     overflow: hidden;
 }
+
+#session {
+    position: fixed;
+    right: 3rem;
+    bottom: 7rem;
+    animation: session-animation 1.3s;
+}
+
+@keyframes session-animation {
+    from {
+        bottom: 0rem;
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        bottom: 7rem;
+    }
+}
