@@ -24,7 +24,6 @@ window.addEventListener("scroll", () => {
 
 let lastScrollY = window.scrollY;
 
-let elementIsClicked = false;
 
 closes.addEventListener("click", () => {
     header.classList.toggle("hidden");

@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
     <title> Laravel App - @yield('title')</title>
 </head>
@@ -41,7 +42,7 @@
     }
 </style>
 
-<body id="my-scrollbar">
+<body id="my-scrollbar" class="preload">
     <div id="header" class="d-flex justify-content-around align-items-center p-3 px-md-4 bg-white fixed-top">
         <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{{ route('posts.index') }}"
                 class="text-decoration-none fs-3 text-dark" id="LaravelApp">Laravel App</a></h5>
@@ -126,6 +127,46 @@
 
         $(document).ready(function() {
             $('#session').fadeIn().delay(10000).fadeOut();
+        });
+
+        $(window).on('load', function() {
+            $("body").removeClass("preload");
+        });
+    </script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            speed: 600,
+            direction: 'horizontal',
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                enabled: false
+            },
         });
     </script>
 </body>

@@ -11,7 +11,7 @@
         border-radius: .3rem;
         transform: translate(0rem, 0rem);
         box-shadow: 0px 0px 0px 0px white;
-        transition: transform .3s, box-shadow .3s;
+        transition: all .3s;
         text-align: left;
     }
 
@@ -25,7 +25,6 @@
     }
 
     .allpost:hover {
-        box-shadow:14px -14px 1px 1px lightblue;
         color: lightsalmon;
     }
 
@@ -38,7 +37,8 @@
     }
 
     #myform > *, #myform form input{
-        background-color: var(--yellow);
+        border-radius: .4rem;
+        background-color: var(--black);
         color: azure !important;
     }
 </style>

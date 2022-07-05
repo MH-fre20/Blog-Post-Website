@@ -21,6 +21,7 @@ class PostTest extends TestCase
 
      /** @test */
 
+
     public function test_Post_Test()
     {
         $user = User::factory()->create();
