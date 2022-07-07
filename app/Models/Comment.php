@@ -26,6 +26,12 @@ class Comment extends Model
         return $this->morphTo();
     }
 
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable')
+        ->withTimestamps();
+    }
+
     protected static function boot()
     {
         static::addGlobalScope(new LatestScope);

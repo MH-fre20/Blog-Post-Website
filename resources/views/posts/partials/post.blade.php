@@ -7,10 +7,10 @@
 
     .allpost {
         margin: 2rem;
-        border: 1px solid rgb(115, 203, 232);
+        border: 0px solid rgb(115, 203, 232);
         border-radius: .3rem;
         transform: translate(0rem, 0rem);
-        box-shadow: 0px 0px 0px 0px white;
+        box-shadow: 0px 0px 0px 0px rgb(165, 79, 79);
         transition: all .3s;
         text-align: left;
     }

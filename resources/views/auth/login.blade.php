@@ -15,8 +15,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -50,6 +51,12 @@
 
                                         <label class="form-check-label" for="remember">
                                             {{ __('Remember Me') }}
+                                            <div style="position: relative; right: 2rem;">
+                                                @if (Route::has('register'))
+                                                    <a class="btn btn-link"
+                                                        href="{{ route('register') }}">{{ __('Create New account') }}</a>
+                                                @endif
+                                            </div>
                                         </label>
                                     </div>
                                 </div>
@@ -65,11 +72,6 @@
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
-                                    @endif
-
-                                    @if (Route::has('register'))
-                                            <a class="btn btn-link"
-                                                href="{{ route('register') }}">{{ __('Create New account') }}</a>
                                     @endif
                                 </div>
                             </div>
