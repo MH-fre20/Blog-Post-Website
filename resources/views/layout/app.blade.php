@@ -138,16 +138,8 @@
         const swiper = new Swiper('.swiper', {
             // Optional parameters
             speed: 600,
-            direction: 'horizontal',
-            spaceBetween: 30,
-            centeredSlides: true,
             loop: true,
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-
+            effect: 'fade',
             // Navigation arrows
             navigation: {
                 nextEl: '.swiper-button-next',
