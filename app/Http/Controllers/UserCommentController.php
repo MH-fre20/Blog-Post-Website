@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreComment;
+use App\Models\BlogPost;
 use App\Models\User;
 use Illuminate\Http\Request;
 

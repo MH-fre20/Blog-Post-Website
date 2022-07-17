@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Scopes\LatestScope;
 use App\Scopes\LatestScopeComment;
+use App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +14,7 @@ class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Taggable;
 
     protected $fillable = ['user_id', 'content'];
 
@@ -26,11 +28,11 @@ class Comment extends Model
         return $this->morphTo();
     }
 
-    public function tags()
+    /* public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable')
         ->withTimestamps();
-    }
+    } */
 
     protected static function boot()
     {
@@ -42,7 +44,6 @@ class Comment extends Model
             if ($comment->commentable_type === BlogPost::class) {
             cache()->tags(['blog-post'])->forget("blog-post-{$comment->commentable_id}"); 
             cache()->tags(['blog-post'])->forget('mostCommented');
-        
         }
         });
 

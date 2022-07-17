@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Scopes\LatestScope;
 use App\Scopes\DeletedAdminScope;
+use App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ class BlogPost extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Taggable;
 
     protected $fillable = [
         'title',
@@ -31,11 +33,11 @@ class BlogPost extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function tags()
+    /* public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable')
         ->withTimestamps();
-    }
+    } */
 
     //local Scope
     public static function scopeMostCommented($query)
